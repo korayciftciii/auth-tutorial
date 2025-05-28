@@ -37,7 +37,7 @@ export const LoginForm = () => {
                     setError(response?.error);
                     setSuccess(response?.success);
                 })
-                .catch((err) => {
+                .catch(() => {
                     setError("An unexpected error occurred. Please try again later.");
                 });
         })
