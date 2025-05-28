@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import { RegisterSchema } from "@/schemas/index";
 import { db } from "@/lib/db"; // Assuming you have a database connection setup
 import { getUserByEmail } from "@/data/user";
+import { generateVerificationToken } from "@/lib/tokens";
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
     const validatedFields = RegisterSchema.safeParse(values);
     if (!validatedFields.success) {
@@ -22,8 +23,11 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
             password: hashedPassword,
             name,
             surname
-        }
+        },
     });
-    // send verification token for later 
-    return { success: "Registration successful!" };
+
+    const verificationToken = await generateVerificationToken(email);
+
+
+    return { success: "Confirmation email sent!" };
 };
