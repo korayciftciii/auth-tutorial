@@ -1,5 +1,4 @@
 import { Resend } from "resend"
-import { email } from "zod/v4";
 
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -8,6 +7,7 @@ export const sendTwoFactorTokenEmail = async (
     email: string,
     token: string
 ) => {
+
     await resend.emails.send({
         from: "onboarding@resend.dev",
         to: email,
