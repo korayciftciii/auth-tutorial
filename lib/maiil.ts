@@ -12,7 +12,10 @@ export const sendTwoFactorTokenEmail = async (
         from: "onboarding@resend.dev",
         to: email,
         subject: "Verification Code",
-        html: `<p>Your verification token <b>${token}</b> please do not share your code to anyone else!</p>`
+        html:
+            `<p>Your verification token <b>${token}</b> please do not share your code to anyone else!</p>
+         <p>This code will be expire in 5 minutes</p>
+        `
     });
 }
 
@@ -34,6 +37,9 @@ export const sendVerificationEmail = async (email: string, token: string) => {
         from: "onboarding@resend.dev",
         to: email,
         subject: "Confirm your email",
-        html: `<p>Click <a href="${confirmLink}">here</a> to confirm email.</p>`
+        html:
+            `<p>Click <a href="${confirmLink}">here</a> to confirm email.</p>
+         <p>This verification link will be expire in 5 minutes</p>
+        `
     });
 };
