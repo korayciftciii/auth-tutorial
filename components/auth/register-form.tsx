@@ -36,7 +36,7 @@ export const RegisterForm = () => {
                     setError(response.error || "");
                     setSuccess(response.success || "Registration successful!");
                 })
-                .catch((err) => {
+                .catch(() => {
                     setError("An unexpected error occurred. Please try again later.");
                 });
         })

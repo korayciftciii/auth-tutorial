@@ -13,6 +13,7 @@ import { FormError } from "../form-error"
 import { FormSuccess } from "../form-success"
 import { login } from "@/actions/login"
 import { useState, useTransition } from "react"
+import Link from "next/link"
 export const LoginForm = () => {
     const searchParams = useSearchParams();
     const urlError = searchParams.get("error") === "OAuthAccountNotLinked" ? "Email already in use with diffrent provider." : "";
@@ -69,6 +70,16 @@ export const LoginForm = () => {
                                 <FormControl>
                                     <Input type="password" placeholder="******" {...field} />
                                 </FormControl>
+                                <Button
+                                    size={"sm"}
+                                    variant={"link"}
+                                    asChild
+                                    className="px-0 font-normal"
+                                >
+                                    <Link href={"/auth/reset"}>
+                                        Forgot Password?
+                                    </Link>
+                                </Button>
                                 <FormMessage />
                             </FormItem>
                         )} />
