@@ -1,7 +1,20 @@
 import { Resend } from "resend"
 import { email } from "zod/v4";
 
+
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+export const sendTwoFactorTokenEmail = async (
+    email: string,
+    token: string
+) => {
+    await resend.emails.send({
+        from: "onboarding@resend.dev",
+        to: email,
+        subject: "Verification Code",
+        html: `<p>Your verification token <b>${token}</b> please do not share your code to anyone else!</p>`
+    });
+}
 
 export const sendPasswordResetEmail = async (email: string, token: string) => {
     const resetLink = `http://localhost:3000/auth/new-password?token=${token}`;
