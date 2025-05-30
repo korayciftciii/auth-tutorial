@@ -2,13 +2,11 @@
 import { UserInfo } from "@/components/auth/user-info";
 import { useCurrentUser } from "@/hooks/use-current-user";
 
-const ServerPage = () => {
+const ClientPage = () => {
     const user = useCurrentUser()
     return (
-        <>
-            <UserInfo user={user} label="Client Component" />
-        </>
+        <UserInfo user={user} label="Client Side Component" />
     )
 }
 
-export default ServerPage;
+export default ClientPage

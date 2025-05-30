@@ -39,7 +39,7 @@ export default function NavBar() {
                     variant={pathname === "/admin" ? "default" : "outline"}
                 >
                     <Link href={"/admin"}>
-                        Client
+                        Admin
                     </Link>
                 </Button>
             </div>
