@@ -16,6 +16,7 @@ import { useState, useTransition } from "react"
 import Link from "next/link"
 export const LoginForm = () => {
     const searchParams = useSearchParams();
+    const callbackUrl = searchParams.get("callbackurl")
     const urlError = searchParams.get("error") === "OAuthAccountNotLinked" ? "Email already in use with diffrent provider." : "";
     const [isPending, startTransition] = useTransition();
     const [error, setError] = useState<string | undefined>("");
@@ -34,7 +35,7 @@ export const LoginForm = () => {
         setError("");
         setSuccess("");
         startTransition(async () => {
-            await login(data).
+            await login(data, callbackUrl).
                 then((response) => {
                     if (response?.error) {
                         form.reset();
